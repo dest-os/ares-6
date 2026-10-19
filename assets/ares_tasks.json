@@ -1,0 +1,171 @@
+{
+  "_aciklama": "Bu dosya ARES'in görev sınırlarını belirler. Yeni komut eklemek için 'gorevler' listesine yeni bir blok ekleyin. Ayrıntılı rehber için ARES_GOREV_REHBERI.md dosyasına bakın.",
+  "asistan_adi": "ARES",
+  "sahibi_adi": "İbrahim",
+  "karsilama_mesaji": "Dinliyorum.",
+  "anlasilmadi_mesaji": "Bunu anlayamadım. İstersen görev dosyama yeni bir komut ekleyebilirsin.",
+  "uygulama_bulunamadi_mesaji": "Böyle bir uygulama bulamadım.",
+  "gorevler": [
+    {
+      "tur": "tam_eslesme",
+      "eylem": "kategori_ac",
+      "parametre": "SOSYAL",
+      "tetikleyiciler": [
+        "sosyal kategorisini aç",
+        "sosyal kategoriyi aç",
+        "sosyali aç",
+        "sosyal aç",
+        "sosyal"
+      ],
+      "yanit": "Sosyal kategorisini açıyorum."
+    },
+    {
+      "tur": "tam_eslesme",
+      "eylem": "kategori_ac",
+      "parametre": "ARES",
+      "tetikleyiciler": [
+        "ares kategorisini aç",
+        "ares kategoriyi aç",
+        "ares aç"
+      ],
+      "yanit": "ARES kategorisini açıyorum."
+    },
+    {
+      "tur": "tam_eslesme",
+      "eylem": "kategori_ac",
+      "parametre": "MEDYA",
+      "tetikleyiciler": [
+        "medya kategorisini aç",
+        "medya kategoriyi aç",
+        "medyayı aç",
+        "medya aç",
+        "medya"
+      ],
+      "yanit": "Medya kategorisini açıyorum."
+    },
+    {
+      "tur": "tam_eslesme",
+      "eylem": "kategori_ac",
+      "parametre": "ARAÇLAR",
+      "tetikleyiciler": [
+        "araçlar kategorisini aç",
+        "araçlar kategoriyi aç",
+        "araçları aç",
+        "araçlar aç",
+        "araçlar"
+      ],
+      "yanit": "Araçlar kategorisini açıyorum."
+    },
+    {
+      "tur": "tam_eslesme",
+      "eylem": "kategori_ac",
+      "parametre": "İŞ",
+      "tetikleyiciler": [
+        "iş kategorisini aç",
+        "iş kategoriyi aç",
+        "işi aç",
+        "iş aç"
+      ],
+      "yanit": "İş kategorisini açıyorum."
+    },
+    {
+      "tur": "tam_eslesme",
+      "eylem": "kategori_ac",
+      "parametre": "SİSTEM",
+      "tetikleyiciler": [
+        "sistem kategorisini aç",
+        "sistem kategoriyi aç",
+        "sistemi aç",
+        "sistem aç",
+        "sistem"
+      ],
+      "yanit": "Sistem kategorisini açıyorum."
+    },
+    {
+      "tur": "tam_eslesme",
+      "eylem": "kategori_ac",
+      "parametre": "İNTERNET",
+      "tetikleyiciler": [
+        "internet kategorisini aç",
+        "internet kategoriyi aç",
+        "interneti aç",
+        "internet aç"
+      ],
+      "yanit": "İnternet kategorisini açıyorum."
+    },
+    {
+      "tur": "tam_eslesme",
+      "eylem": "kategori_ac",
+      "parametre": "DİĞER",
+      "tetikleyiciler": [
+        "diğer kategorisini aç",
+        "diğer kategoriyi aç",
+        "diğerini aç",
+        "diğer aç",
+        "diğer"
+      ],
+      "yanit": "Diğer kategorisini açıyorum."
+    },
+    {
+      "tur": "onek",
+      "eylem": "uygulama_ac",
+      "tetikleyiciler": [
+        "aç ",
+        "baslat ",
+        "başlat ",
+        "uygulamasını aç ",
+        "uygulamasini ac ",
+        "uygulamayı aç ",
+        "uygulamayi ac ",
+        "açar mısın ",
+        "acar misin "
+      ],
+      "yanit": "%s açılıyor."
+    },
+    {
+      "tur": "onek",
+      "eylem": "internette_ara",
+      "tetikleyiciler": [
+        "ara ",
+        "internette ara ",
+        "google'da ara ",
+        "hakkında bilgi ver ",
+        "araştır ",
+        "hakkında araştır "
+      ],
+      "yanit": "%s için arama sonuçlarını açıyorum."
+    },
+    {
+      "tur": "tam_eslesme",
+      "eylem": "soyle",
+      "tetikleyiciler": [
+        "nasılsın",
+        "naber",
+        "ne haber"
+      ],
+      "yanit": "İyiyim, teşekkür ederim İbrahim. Sana nasıl yardımcı olabilirim?"
+    },
+    {
+      "tur": "tam_eslesme",
+      "eylem": "soyle",
+      "tetikleyiciler": [
+        "sen kimsin",
+        "kimsin sen",
+        "adın ne",
+        "sen nesin"
+      ],
+      "yanit": "Ben ARES, senin kişisel yapay zeka asistanınım."
+    },
+    {
+      "tur": "tam_eslesme",
+      "eylem": "soyle",
+      "tetikleyiciler": [
+        "teşekkürler",
+        "teşekkür ederim",
+        "sağ ol",
+        "sağ ol ares"
+      ],
+      "yanit": "Rica ederim İbrahim."
+    }
+  ]
+}

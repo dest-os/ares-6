@@ -1,0 +1,40 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+// KÖK SORUN: bazı eklentiler (geolocator_android, speech_to_text, record_android)
+// kendi build.gradle dosyalarında "flutter.compileSdkVersion" gibi değerlere
+// erişmeye çalışıyor. Bu değer normalde sadece :app modülünün "flutter { }"
+// bloğundan gelir ve eklentilere ulaşmaz. Kök projeye tanımlayarak TÜM alt
+// projelere (eklentilere) otomatik miras bırakıyoruz — bu, Gradle'ın resmi
+// belgelenmiş davranışıdır: "Extra properties on a project are visible from
+// its subprojects." (https://docs.gradle.org/current/userguide/writing_build_scripts.html)
+rootProject.ext.flutter = [
+    compileSdkVersion: 36,
+    minSdkVersion    : 24,
+    targetSdkVersion : 36,
+    ndkVersion       : '25.1.8937393',
+    versionCode      : 1,
+    versionName      : '1.0',
+]
+
+// Not: Daha önce burada AGP 8+ için eksik "namespace" alanını otomatik
+// tamamlayan ihtiyati bir blok vardı. Gerçekte hiçbir eklentide bu soruna
+// rastlanmadı, üstelik kendisi "Cannot run Project.afterEvaluate(Closure)
+// when the project is already evaluated" hatasına yol açtı. Bu yüzden
+// kaldırıldı.
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

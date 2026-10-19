@@ -1,0 +1,83 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodu indir
+        uses: actions/checkout@v4
+
+      - name: Java kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.5'
+          channel: 'stable'
+          cache: true
+
+      - name: Proje klasörünü bul
+        id: root
+        run: |
+          if [ -f "pubspec.yaml" ]; then
+            echo "dir=." >> $GITHUB_OUTPUT
+          elif [ -f "tablet-main/pubspec.yaml" ]; then
+            echo "dir=tablet-main" >> $GITHUB_OUTPUT
+          elif [ -f "tablet-main-main/pubspec.yaml" ]; then
+            echo "dir=tablet-main-main" >> $GITHUB_OUTPUT
+          else
+            FOUND=$(find . -name pubspec.yaml -not -path '*/.*' | head -1)
+            if [ -n "$FOUND" ]; then
+              DIR=$(dirname "$FOUND")
+              echo "dir=$DIR" >> $GITHUB_OUTPUT
+              echo "Bulundu: $DIR"
+            else
+              echo "pubspec.yaml bulunamadı" >&2
+              find . -maxdepth 3 -type d
+              exit 1
+            fi
+          fi
+
+      - name: Bağımlılıkları yükle
+        working-directory: ${{ steps.root.outputs.dir }}
+        run: flutter pub get
+
+      - name: Gradle 8.7 zorunlu
+        working-directory: ${{ steps.root.outputs.dir }}
+        run: |
+          mkdir -p android/gradle/wrapper
+          printf '%s\n' \
+            'distributionBase=GRADLE_USER_HOME' \
+            'distributionPath=wrapper/dists' \
+            'zipStoreBase=GRADLE_USER_HOME' \
+            'zipStorePath=wrapper/dists' \
+            'distributionUrl=https\://services.gradle.org/distributions/gradle-8.7-all.zip' \
+            > android/gradle/wrapper/gradle-wrapper.properties
+          echo "=== gradle-wrapper.properties ==="
+          cat android/gradle/wrapper/gradle-wrapper.properties
+          if [ -f android/settings.gradle ]; then
+            sed -i 's/com.android.application" version "[0-9.]*"/com.android.application" version "8.5.2"/' android/settings.gradle || true
+          fi
+
+      - name: APK oluştur
+        working-directory: ${{ steps.root.outputs.dir }}
+        run: flutter build apk --release
+
+      - name: APK'yı yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: dest-os-ares-apk
+          path: '**/app-release.apk'
+          if-no-files-found: warn
+          retention-days: 1
+          overwrite: true
